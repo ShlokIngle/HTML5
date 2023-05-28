@@ -850,36 +850,7 @@
     <script>
       feather.replace();
     </script>
-    <script>
-        function sendSMS() {
-          // Your Twilio API credentials
-          var accountSid = 'AC3aefc2660f7a039bf42c2e0a095a4565';
-          var authToken = 'b7f59dbe138d3adf75da5ed17b68f875';
-          
-          // Recipient's phone number and message content
-          var recipientNumber = '+917888132751';
-          var message = 'Submission Recieved';
-    
-          // Send SMS using Twilio API
-          fetch('https://api.twilio.com/2010-04-01/Accounts/' + accountSid + '/Messages.json', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/x-www-form-urlencoded',
-              'Authorization': 'Basic ' + btoa(accountSid + ':' + authToken)
-            },
-            body: 'To=' + encodeURIComponent(recipientNumber) + '&Body=' + encodeURIComponent(message) + '&From=+13159152417'
-          })
-          .then(response => response.json())
-          .then(data => {
-            console.log(data);
-            alert('SMS sent successfully!');
-          })
-          .catch(error => {
-            console.error(error);
-            alert('Failed to send SMS.');
-          });
-        }
-    </script>
+  
     <script>
         // Retrieve the canvas element
         var ctx = document.getElementById('myChart').getContext('2d');
@@ -919,7 +890,7 @@
           options: chartOptions
         });
     </script>
-
+    <!--
     <script>
       var Butt = document.getElementById('Butt');
       const accountSid = 'AC3aefc2660f7a039bf42c2e0a095a4565';
@@ -959,6 +930,7 @@
         console.log('WhatsApp sent');  
       }
     </script>
+    -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="assets/js/theme.js"></script>
 
