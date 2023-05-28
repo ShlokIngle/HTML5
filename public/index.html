@@ -54,7 +54,9 @@
 			  <li class="nav-item px-2" data-anchor="data-anchor"><a class="nav-link" href="#contact">Contact Us</a></li>
             </ul>
             <form class="ps-lg-5">
-              <button class="btn btn-light shadow-klean order-0" type="submit"><span class="text-gradient fw-bold">Apply</span></button>
+              <a href="#contact">
+                <button class="btn btn-light shadow-klean order-0" type="submit"><span class="text-gradient fw-bold">Apply</span></button>
+              </a>  
             </form>
           </div>
         </div>
@@ -76,7 +78,7 @@
               <h1 class="fw-bold display-4 fs-4 fs-lg-6 fs-xxl-7 text-gradient"> SGGSIE&amp;T Study Abroad Chapter  </h1>
               <h1 class="text-700"><span class="fw-bold"></span>(SSAC)</h1>
               <p class="mb-5 fs-0">The Official College Chapter That Helps </br>You Fulfill Your Dream of Studying Abroad.</p>
-              <a class="btn hover-top btn-glow btn-klean" href="#">Know More</a>
+              <a class="btn hover-top btn-glow btn-klean" href="#service">Know More</a>
             </div>
           </div>
         </div>
@@ -523,6 +525,28 @@
         </div>
       </section>
 
+      <!-- ============================================--> 
+      <!-- <section> begin ============================-->
+       <section>
+        <div class = "container-fluid"> 
+          <div id="video-container" style="display: flex; justify-content: center; align-items: center;">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/pDBZ4wWCGHA" frameborder="0" allowfullscreen></iframe>
+          </div>
+        </div>  
+      </section>
+      <!-- <section> close ============================-->
+      <!-- ============================================-->
+    
+      <!-- ============================================-->
+      <!-- <section> begin ============================-->
+        <section>
+          <div class = "container-fluid"> 
+              <canvas id ="myChart">
+            </div>
+          </div>  
+        </section>
+        <!-- <section> close ============================-->
+        <!-- ============================================-->
 
       <!-- ============================================-->
       <!-- <section> begin ============================-->
@@ -695,7 +719,7 @@
                     <div class="row">
                       <div class="col-sm-12">
                         <div class="d-grid">
-                          <button class="btn hover-top btn-glow btn-klean rounded-pill" type="submit">Submit </button>
+                          <button class="btn hover-top btn-glow btn-klean rounded-pill" id="Butt">Send SMS</button>
                         </div>
                       </div>
                     </div>
@@ -733,7 +757,7 @@
       </section>
       
       <section class="pb-0 pt-6 circle-blend circle-blend-left circle-warning">
-        <div class="bg-holder" style="background-image:url(assets/img/illustrations/cta-bg (2).png);background-position:center;background-size:cover;">
+        <div class="bg-holder" style="background-image:url('assets/img/illustrations/cta-bg (2).png');background-position:center;background-size:cover;">
         </div>
         <!--/.bg-holder-->
 
@@ -826,6 +850,116 @@
     <script>
       feather.replace();
     </script>
+    <script>
+        function sendSMS() {
+          // Your Twilio API credentials
+          var accountSid = 'AC3aefc2660f7a039bf42c2e0a095a4565';
+          var authToken = 'b7f59dbe138d3adf75da5ed17b68f875';
+          
+          // Recipient's phone number and message content
+          var recipientNumber = '+917888132751';
+          var message = 'Submission Recieved';
+    
+          // Send SMS using Twilio API
+          fetch('https://api.twilio.com/2010-04-01/Accounts/' + accountSid + '/Messages.json', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+              'Authorization': 'Basic ' + btoa(accountSid + ':' + authToken)
+            },
+            body: 'To=' + encodeURIComponent(recipientNumber) + '&Body=' + encodeURIComponent(message) + '&From=+13159152417'
+          })
+          .then(response => response.json())
+          .then(data => {
+            console.log(data);
+            alert('SMS sent successfully!');
+          })
+          .catch(error => {
+            console.error(error);
+            alert('Failed to send SMS.');
+          });
+        }
+    </script>
+    <script>
+        // Retrieve the canvas element
+        var ctx = document.getElementById('myChart').getContext('2d');
+
+        // Define chart data
+        var chartData = {
+          labels: ['Label 1', 'Label 2', 'Label 3'],
+          datasets: [{
+          label: 'Dataset 1',
+          data: [10, 20, 30],
+          backgroundColor: [
+                            'rgba(255, 99, 132, 0.5)',
+                            'rgba(54, 162, 235, 0.5)',
+                            'rgba(255, 206, 86, 0.5)'],
+          borderColor: [
+                          'rgba(255, 99, 132, 1)',
+                          'rgba(54, 162, 235, 1)',
+                          'rgba(255, 206, 86, 1)'
+    ],
+    borderWidth: 1
+          }]
+        };
+
+        // Set chart options
+        var chartOptions = {
+        scales: {
+          y: {
+            beginAtZero: true
+            }
+          }
+        };
+
+        // Create the chart
+        var myChart = new Chart(ctx, {
+          type: 'line', // Specify the chart type (e.g., bar, line, pie)
+          data: chartData,
+          options: chartOptions
+        });
+    </script>
+
+    <script>
+      var Butt = document.getElementById('Butt');
+      const accountSid = 'AC3aefc2660f7a039bf42c2e0a095a4565';
+      const authToken = 'b7f59dbe138d3adf75da5ed17b68f875';
+      const client = require('twilio')(accountSid, authToken);
+      var recipientNumber = '+917888132751';
+      var message = 'Submission Recieved';
+
+      Butt.addEventListener('click', function()) {
+        fetch('https://api.twilio.com/2010-04-01/Accounts/' + accountSid + '/Messages.json', {
+          method: 'POST',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+              'Authorization': 'Basic ' + btoa(accountSid + ':' + authToken)
+            },
+            body: 'To=' + encodeURIComponent(recipientNumber) + '&Body=' + encodeURIComponent(message) + '&From=+13159152417'
+        })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+          alert('SMS sent successfully!');
+        })
+        .catch(error => {
+          console.error(error);
+          alert('Failed to send SMS.');
+        });
+        console.log('SMS sent');
+        
+        client.messages
+          .create({
+            body: 'Submission Recieved',
+            from: 'whatsapp:+13159152417',
+            to: 'whatsapp:+917888132751'
+          })
+          .then(message => console.log(message.sid))
+          .catch(error => console.error(error));
+        console.log('WhatsApp sent');  
+      }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="assets/js/theme.js"></script>
 
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&amp;display=swap" rel="stylesheet">
